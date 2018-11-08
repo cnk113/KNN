@@ -12,28 +12,25 @@ def distance(x,y,l):
     elif l == 'L2':
         for i in range(4):
             dist += (x[i]*y[i])**2
-        dist = math.sqrt(dist)
+            dist = math.sqrt(dist)
     else:
         highest = abs(x[3]-y[3])
-        for i in range(4):
+        for i in range(3):
             if abs(x[i]-y[i]) > highest:
                 highest = abs(x[i]-y[i])
-        dist = highest
-    return (dist,)
+            dist = highest
+    return dist 
 
 def KNN(train,K,test,l):
-    S = []
-    for n in range(len(test)):
-        S.append(distance(test,test[n],n,l))
-    S.sort()
+    S = {}
+    for n in range(len(train)):
+        S[distance(train[n],test,l)] = train[n][4]
+    sort = sorted(S.items(), key=lambda x: x[1])
     label = 0
-    labels = []
-    for k in range(K):
-        if distance(test[k],S[k],l) ...:
-            label =
-        else:
-            label = 
-        labels.append(label)
+    for k in range(1,K+1):
+        nn = S[0:k]
+        for n in nn:
+            label += S.get(n)
     return label
 
 def parse_args(): # DONE
@@ -51,9 +48,8 @@ def main():
     opts = parse_args()
     train = parse_csv('knn_train.csv')
     test = parse_csv('knn_test.csv')
-    labels = KNN(train,opts.K,test,opts.method)
-    for n in labels:
-        print(n)
+    for i in range(len(test))
+        print(KNN(train,opts.K,test[i],opts.method))
     
 if __name__ == '__main__':
     main()
