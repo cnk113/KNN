@@ -19,18 +19,22 @@ def distance(x,y,l):
             if abs(x[i]-y[i]) > highest:
                 highest = abs(x[i]-y[i])
         dist = highest
-    return dist
+    return (dist,)
 
 def KNN(train,K,test,l):
     S = []
     for n in range(len(test)):
-        dist = distance(test,test[n],l)
-        S.append(dist)
+        S.append(distance(test,test[n],n,l))
     S.sort()
-    neighbors = []
-    for k in range(1,K+1):
-        if 
-    return neighbors
+    label = 0
+    labels = []
+    for k in range(K):
+        if distance(test[k],S[k],l) ...:
+            label =
+        else:
+            label = 
+        labels.append(label)
+    return label
 
 def parse_args(): # DONE
     parser = argparse.ArgumentParser(description = 'Implements KNN and takes in K and distance metric')
@@ -47,8 +51,8 @@ def main():
     opts = parse_args()
     train = parse_csv('knn_train.csv')
     test = parse_csv('knn_test.csv')
-    nn = KNN(train,opts.K,test,opts.method)
-    for n in nn:
+    labels = KNN(train,opts.K,test,opts.method)
+    for n in labels:
         print(n)
     
 if __name__ == '__main__':
